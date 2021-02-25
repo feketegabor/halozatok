@@ -1,0 +1,49 @@
+﻿body {
+    background-color: #121212;
+    color: #ababab;
+    font-family: Tahoma;
+}
+body h1, .bekezdes h2 {
+    padding: 5px;
+    margin: 0px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #4a3567;
+}
+body img {
+    margin-top: 10px;
+    border: 5px solid #4a3567;
+    border-radius: 15px;
+    width: 300px;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#cimsor {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 30px;
+}
+.bekezdes {
+    background-color: #212121;
+    padding: 20px;
+    border-radius: 30px;
+}
+hr {
+    border: solid#4a3567;
+}
+#cimnev {
+    color: #121212;
+    font-size: 40px;
+}
+li {
+    margin: 0 0 20px 0;
+}
+a {
+    color: #b99ddb;
+}
+a:hover {
+    color: #4a3567;
+}
