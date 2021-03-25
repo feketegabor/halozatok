@@ -67,11 +67,11 @@
 }
 
 .jó {
-
+    background-color: #135313;
 }
 
 .rossz{
-
+    background-color: #800000;
 }
 
 @media screen and (max-width: 870px){
