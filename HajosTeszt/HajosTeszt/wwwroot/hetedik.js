@@ -1,5 +1,5 @@
 ﻿var kérdések;
-var kérdésSzám = 0;
+var numberOfQuestions = 0;
 
 function letöltés() {
     fetch('/questions.json')
@@ -11,7 +11,7 @@ function letöltésBefejeződött(d) {
     console.log("Sikeres letöltés")
     console.log(d)
     kérdések = d;
-    kérdésMegjelenítés(kérdésSzám);
+    kérdésMegjelenítés(numberOfQuestions);
 };
 
 function kérdésMegjelenítés(kérdés) {
@@ -40,13 +40,13 @@ window.onload = function () {
         document.getElementById("válasz2").classList.remove("rossz")
         document.getElementById("válasz3").classList.remove("jó")
         document.getElementById("válasz3").classList.remove("rossz")
-        if (kérdésSzám == 0) {
-            kérdésSzám = kérdések.length-1; 
-            kérdésMegjelenítés(kérdésSzám);
+        if (numberOfQuestions == 0) {
+            numberOfQuestions = kérdések.length-1; 
+            kérdésMegjelenítés(numberOfQuestions);
         }
         else {
-            kérdésSzám--;
-            kérdésMegjelenítés(kérdésSzám);
+            numberOfQuestions--;
+            kérdésMegjelenítés(numberOfQuestions);
         }
     };
 
@@ -57,19 +57,19 @@ window.onload = function () {
         document.getElementById("válasz2").classList.remove("rossz")
         document.getElementById("válasz3").classList.remove("jó")
         document.getElementById("válasz3").classList.remove("rossz")
-        if (kérdésSzám == kérdések.length-1) {
-            kérdésSzám = 0;
-            kérdésMegjelenítés(kérdésSzám);
+        if (numberOfQuestions == kérdések.length-1) {
+            numberOfQuestions = 0;
+            kérdésMegjelenítés(numberOfQuestions);
         }
         else {
-            kérdésSzám++;
-            kérdésMegjelenítés(kérdésSzám);
+            numberOfQuestions++;
+            kérdésMegjelenítés(numberOfQuestions);
         }
     };
 
     document.getElementById("válasz1").onclick = function helyese() {
         
-        if (kérdések[kérdésSzám].correctAnswer == 1) {
+        if (kérdések[numberOfQuestions].correctAnswer == 1) {
             this.classList.add("jó")
         }
         else {
@@ -79,7 +79,7 @@ window.onload = function () {
 
     document.getElementById("válasz2").onclick = function helyese() {
 
-        if (kérdések[kérdésSzám].correctAnswer == 2) {
+        if (kérdések[numberOfQuestions].correctAnswer == 2) {
             this.classList.add("jó")
         }
         else {
@@ -89,7 +89,7 @@ window.onload = function () {
 
     document.getElementById("válasz3").onclick = function helyese() {
 
-        if (kérdések[kérdésSzám].correctAnswer == 3) {
+        if (kérdések[numberOfQuestions].correctAnswer == 3) {
             this.classList.add("jó")
         }
         else {
