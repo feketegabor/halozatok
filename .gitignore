@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 HajostesztContext.cs
+
+CRUDE_dbContext.cs
