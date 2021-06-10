@@ -19,6 +19,14 @@
         </div>
         <div id="employeeList"></div>
     </form>
+    <div>
+        <p>
+            API végpont létrehozása a tábla rekordjainak számának megjelenítésére: api/employee/count (<a href="https://szamhalgyak.azurewebsites.net/api/employee/count">https://szamhalgyak.azurewebsites.net/api/employee/count</a>)
+        </p>
+        <p>
+            API végpont létrehozása egy rekord lekérdezésére kulcs alapján: api/employee/{ID} (pl. <a href="https://szamhalgyak.azurewebsites.net/api/employee/150">https://szamhalgyak.azurewebsites.net/api/employee/150</a> )
+        </p>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", x => {
             fetch("api/employee").then(x => x.json()).then(x => { showEmployees(x) })
