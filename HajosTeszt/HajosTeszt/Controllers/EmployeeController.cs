@@ -33,15 +33,22 @@ namespace HajosTeszt.Controllers
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Employee Get(int id)
         {
-            return "value";
+            Leadando_dbContext context = new Leadando_dbContext();
+            var keresettDolgozo = (from x in context.Employees
+                                where x.EmployeeId == id
+                                select x).FirstOrDefault();
+            return keresettDolgozo;
         }
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Employee newEmployee)
         {
+            Leadando_dbContext context = new Leadando_dbContext();
+            context.Employees.Add(newEmployee);
+            context.SaveChanges();
         }
 
         // PUT api/<EmployeeController>/5
@@ -54,6 +61,12 @@ namespace HajosTeszt.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Leadando_dbContext context = new Leadando_dbContext();
+            var torlendoDolgozo = (from x in context.Employees
+                                where x.EmployeeId == id
+                                select x).FirstOrDefault();
+            context.Remove(torlendoDolgozo);
+            context.SaveChanges();
         }
     }
 }

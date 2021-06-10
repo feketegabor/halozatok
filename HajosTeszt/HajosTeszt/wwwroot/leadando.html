@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <div id="employeeList"></div>
+        <div>
+            <input id="firstNameText" type="text" placeholder="First Name" />
+            <input id="lastNameText" type="text" placeholder="Last Name" />
+            <input id="emailText" type="text" placeholder="Email" />
+            <input id="phoneNumberText" type="text" placeholder="Phone Number" />
+        </div>
+        <button id="addButton">Új dolgozó felvétele</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", x => {
+            fetch("api/employee").then(x => x.json()).then(x => { showEmployees(x) })
+        });
+
+        document.getElementById('addButton').addEventListener('click', e => {
+            feltoltes(e);
+        });
+
+        function feltoltes(e) {
+            console.log('fetch');
+            fetch("api/employee",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: `{"firstName":"${document.getElementById("firstNameText").value}", "lastName":"${document.getElementById("lastNameText").value}", "email":"${document.getElementById("emailText").value}", "phoneNumber":"${document.getElementById("phoneNumberText").value}"}`
+                }).then(x => {
+                    if (x.ok) {
+                        alert("Siker");
+                    }
+                    else {
+                        alert("Kudarc");
+                    }
+                });
+            e.preventDefault();
+        };
+        
+
+        //document.getElementById("addButton").addEventListener("click", () => {
+            
+        //    fetch("api/employee",
+        //        {
+        //            method: 'POST',
+        //            headers: {
+        //                'Content-Type': 'application/json'
+        //            },
+        //            body: `{"firstName":"${document.getElementById("firstNameText").value}", "lastName":"${document.getElementById("lastNameText").value}", "email":"${document.getElementById("emailText").value}", "phoneNumber":"${document.getElementById("phoneNumberText").value}"}`
+        //        }).then(x => {
+        //            if (x.ok) {
+        //                alert("Siker");
+
+        //            }
+        //            else {
+        //                alert("Kudarc");
+        //            }
+        //        });
+
+        //});
+
+        function showEmployees(e) {
+            for (var i = 0; i < e.length; i++) {
+                let employee = document.createElement("div");
+
+                employee.innerHTML = e[i].employeeId + ") ";
+                employee.innerHTML += e[i].firstName;
+                employee.innerHTML += ", " + e[i].lastName;
+                employee.innerHTML += ", " + e[i].email;
+                employee.innerHTML += ", " + e[i].phoneNumber;
+                document.getElementById("employeeList").appendChild(employee);
+            }
+        }
+    </script>
+</body>
+</html>
