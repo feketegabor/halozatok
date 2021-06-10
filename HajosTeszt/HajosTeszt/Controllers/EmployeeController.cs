@@ -13,6 +13,16 @@ namespace HajosTeszt.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        [HttpGet]
+        [Route("count")]
+        public int M1()
+        {
+            Leadando_dbContext context = new Leadando_dbContext();
+            var employeeCount = (from x in context.Employees select x.EmployeeId).Count();
+
+            return employeeCount;
+        }
+
         // GET: api/<EmployeeController>
         [HttpGet]
         public IEnumerable<Employee> Get()
