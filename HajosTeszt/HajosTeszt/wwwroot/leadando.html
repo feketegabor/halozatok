@@ -6,14 +6,18 @@
 </head>
 <body>
     <form>
-        <div id="employeeList"></div>
-        <div>
+        <div style="margin-bottom: 50px">
             <input id="firstNameText" type="text" placeholder="First Name" />
             <input id="lastNameText" type="text" placeholder="Last Name" />
             <input id="emailText" type="text" placeholder="Email" />
             <input id="phoneNumberText" type="text" placeholder="Phone Number" />
+            <button id="addButton">Új dolgozó felvétele</button>
         </div>
-        <button id="addButton">Új dolgozó felvétele</button>
+        <div style="margin-bottom: 25px">
+            <input id="deleteID" type="text" placeholder="ID" />
+            <button id="deleteButton">Dolgozó törlése</button>
+        </div>
+        <div id="employeeList"></div>
     </form>
     <script>
         document.addEventListener("DOMContentLoaded", x => {
@@ -23,6 +27,21 @@
         document.getElementById('addButton').addEventListener('click', e => {
             feltoltes(e);
         });
+
+        document.getElementById('deleteButton').addEventListener('click', e => {
+            torles(e);
+        });
+
+        function torles(e) {
+            console.log('torles.fetch');
+            fetch('api/employee/' + deleteID.value, {
+                method: 'DELETE',
+            })
+                .then(res => res.text()) // or res.json()
+                .then(res => console.log(res))
+            e.preventDefault();
+        }
+
 
         function feltoltes(e) {
             console.log('fetch');
@@ -43,28 +62,7 @@
                 });
             e.preventDefault();
         };
-        
 
-        //document.getElementById("addButton").addEventListener("click", () => {
-            
-        //    fetch("api/employee",
-        //        {
-        //            method: 'POST',
-        //            headers: {
-        //                'Content-Type': 'application/json'
-        //            },
-        //            body: `{"firstName":"${document.getElementById("firstNameText").value}", "lastName":"${document.getElementById("lastNameText").value}", "email":"${document.getElementById("emailText").value}", "phoneNumber":"${document.getElementById("phoneNumberText").value}"}`
-        //        }).then(x => {
-        //            if (x.ok) {
-        //                alert("Siker");
-
-        //            }
-        //            else {
-        //                alert("Kudarc");
-        //            }
-        //        });
-
-        //});
 
         function showEmployees(e) {
             for (var i = 0; i < e.length; i++) {
